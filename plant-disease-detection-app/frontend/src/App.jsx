@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="font-sans">
       <div id="video-background">
-        <video autoPlay loop muted>
+        <video autoPlay loop muted playsinline>
           <source src="/project1-background.mp4" type="video/mp4" />
         </video>
       </div>
