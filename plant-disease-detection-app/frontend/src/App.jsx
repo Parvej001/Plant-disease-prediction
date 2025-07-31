@@ -11,7 +11,7 @@ import Predict from './components/Predict';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-const videoUrl = "/project1-background.mp4";
+
 
 const SectionWrapper = ({ children, id }) => (
   <motion.div
@@ -35,7 +35,7 @@ function App() {
     <div className="font-sans">
       <div id="video-background">
         <video autoPlay loop muted>
-          <source src={videoUrl} type="video/mp4" />
+          <source src="/project1-background.mp4" type="video/mp4" />
         </video>
       </div>
 
