@@ -1,0 +1,7 @@
+tensorflow
+Pillow
+numpy
+Flask
+Flask-CORS
+h5py
+werkzeug

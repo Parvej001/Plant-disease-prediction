@@ -1,0 +1,16 @@
+# Python virtual environment
+venv/
+
+# Datasets
+dataset/
+PlantVillage/
+
+# Trained models
+models/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code settings
+.vscode/

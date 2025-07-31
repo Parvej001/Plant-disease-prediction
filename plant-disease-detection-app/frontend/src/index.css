@@ -1,0 +1,35 @@
+/* frontend/src/index.css (Corrected and Cleaned) */
+
+/* 1. Import the Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* 2. Inject Tailwind's base, components, and utilities styles. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3. Add any global, custom styles below. */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #000; /* A fallback background color */
+}
+
+#video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+#video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
