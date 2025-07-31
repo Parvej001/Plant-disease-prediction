@@ -32,7 +32,7 @@ const Predict = ({ onClose }) => {
     setError('');
 
     try {
-      const res = await fetch('http://127.0.0.1:5000/predict', {
+      const res = await fetch('https://plant-disease-prediction-api.onrender.com/predict', {
         method: 'POST',
         body: formData,
       });
