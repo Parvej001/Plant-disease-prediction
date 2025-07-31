@@ -1,4 +1,4 @@
-Plant Disease Detection and Remedy Recommendation System 🌿
+#Plant Disease Detection and Remedy Recommendation System 🌿
 
 This is a full-stack web application designed to help farmers and gardeners identify plant diseases from leaf images. The application uses a deep learning model trained on the renowned PlantVillage dataset to classify 15 different types of plant diseases and healthy leaves across three species (Tomato, Potato, and Pepper).
 
