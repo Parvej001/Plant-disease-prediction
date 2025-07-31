@@ -35,10 +35,9 @@ function App() {
     <div className="font-sans">
       <div id="video-background">
         <video autoPlay loop muted playsinline>
-          <source src="/project1-background.mp4" type="video/mp4" />
+          <source src="/background.mp4" type="video/mp4" />
         </video>
       </div>
-
       <div className="relative z-10">
         <Navbar onPredictClick={openPredictModal} />
         <main>
