@@ -6,18 +6,24 @@ import ImageUpload from '../components/ImageUpload';
 import Result from '../components/Result';
 import ImagePreview from '../components/ImagePreview';
 
+// Best practice: Use an environment variable for the API URL
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+
 const Home = () => {
   const [image, setImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
-  const [result, setResult] = useState('');
+  // FIX 1: Change result state to hold an object
+  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImage(file);
       setPreviewUrl(URL.createObjectURL(file));
-      setResult(''); // Clear previous result
+      setResult(null); // Clear previous result object
+      setError('');
     }
   };
 
@@ -29,21 +35,31 @@ const Home = () => {
     formData.append('file', image);
 
     setLoading(true);
+    setResult(null);
+    setError('');
+
     try {
-      const res = await fetch('http://127.0.0.1:5000/predict', {
+      const res = await fetch(`${API_URL}/predict`, {
         method: 'POST',
         body: formData,
       });
 
       const data = await res.json();
+      
       if (res.ok) {
-        setResult(data.result);
+        // FIX 2: Process the 'prediction', 'confidence', and 'remedy' keys
+        const formattedResult = {
+          name: data.prediction.replace(/__/g, ' ').replace(/_/g, ' '),
+          confidence: (data.confidence * 100).toFixed(2),
+          remedy: data.remedy,
+        };
+        setResult(formattedResult);
       } else {
-        setResult(data.error || 'Prediction failed.');
+        setError(data.error || 'Prediction failed.');
       }
     } catch (err) {
       console.error("Prediction failed", err);
-      setResult("Prediction failed. Is the backend server running?");
+      setError("Prediction failed. Is the backend server running?");
     }
     setLoading(false);
   };
@@ -55,10 +71,11 @@ const Home = () => {
         <form onSubmit={handleSubmit}>
           <ImageUpload onImageChange={handleImageChange} loading={loading} hasImage={!!image} />
           <ImagePreview previewUrl={previewUrl} />
-          <Result result={result} loading={loading} />
+          {/* FIX 3: Pass the result object and error to the Result component */}
+          <Result result={result} loading={loading} error={error} />
         </form>
       </div>
-       <footer className="text-center mt-8 text-sm text-gray-500">
+      <footer className="text-center mt-8 text-sm text-gray-500">
         <p>Powered by React, Flask & Tailwind CSS</p>
       </footer>
     </div>
